@@ -6,6 +6,7 @@ arr = [
     [0,0,0,0,0,0],
     [0,0,0,0,0,0],
 ]
+
 def bfs(start):
     visited=[]
     queue = [start]
