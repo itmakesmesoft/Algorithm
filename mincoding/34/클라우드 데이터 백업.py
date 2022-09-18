@@ -1,6 +1,7 @@
 N=int(input())
 data = [input() for _ in range(N)]
 
+# Parametric Search
 y = 0 # 초기값 0 (값은 무의미)
 for i in range(2): # i=0 행 탐색. i=1 열 탐색
     start, end = 0, N-1
