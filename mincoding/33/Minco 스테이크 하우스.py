@@ -1,29 +1,45 @@
-def union(a, b):
-    fa, fb = find(a), find(b)
-    if fb.isalpha():
-        fb = b
-    
-    arr[b] = fa
-
-def find(parent):
-    if parent.isalpha() or parent==0: # 등급 또는 0인 경우
-        return parent
-    ret = find(arr[parent]) # 품목 번호인 경우
-    arr[parent] = ret
+def find(node):
+    global lst
+    print(node)
+    if node in alphabet:
+        return node
+    elif lst[node]==node:
+        return node
+    ret = find(lst[node])
+    lst[node]=ret
     return ret
 
 
-
-
+def union(a, b):
+    global lst
+    if a in alphabet or b in alphabet:
+        if a.isalpha():
+            b=int(b)
+            lst[b]=a
+        else:
+            a=int(a)
+            lst[a]=b
+    else:
+        a, b=int(a), int(b)
+        if a>b:
+            a, b = b, a
+    fa, fb = find(a), find(b)
+    if fa==fb: return
+    if fb in alphabet:
+        lst[fa]=fb
+    else:
+        lst[fb]=int(fa)
+    return
 
 N, K = map(int, input().split())
 edge = [list(input().split()) for _ in range(N)]
-arr = [0]*K
-
+lst = list(range(K+1))
+alphabet = ['A','B','C','D','E','F']
 for i in range(N):
     a, b = edge[i]
     union(a, b)
-
+for i in range(1, K+1):
+    print(lst[i],end='')
 
 '''
 test case
