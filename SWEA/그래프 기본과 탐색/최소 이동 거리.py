@@ -12,28 +12,40 @@ def dijkstra(start):
             if cost < result[i[0]]:
                 result[i[0]] = cost
                 heapq.heappush(heap, (cost, i[0]))
+t = int(input())
+for case in range(1, t+1):
+    n, e = map(int, input().split())
+    arr = [[] for _ in range(n+1)]
+    for _ in range(e):
+        a, b, c = map(int, input().split())
+        arr[a].append((b, c))
+    inf = int(21e8)
+    result = [inf]*(n+1)
+    heap = []
+    dijkstra(0)
+    print(f'#{case} {result[n]}')
 
-n, m = map(int, input().split())
-arr = [[] for _ in range(n)]
-for _ in range(m):
-    a, b, c = map(int, input().split())
-    arr[a].append((b, c))
-start, end = map(int, input().split())
-inf = int(21e8)
-result = [inf]*n
-heap = []
-dijkstra(start)
-print(*result)
 
 '''
+3
+2 3
+0 1 1
+0 2 6
+1 2 1
+4 7
+0 1 9
+0 2 3
+0 3 7
+1 4 2
+2 3 8
+2 4 1
+3 4 8
+4 6
+0 1 10
+0 2 7
+1 4 2
+2 3 10
+2 4 3
+3 4 10
 
-5 7
-0 1 3
-0 3 9
-0 4 5
-1 2 7
-1 4 1
-2 3 1
-4 2 1
-0 3
 '''
