@@ -27,13 +27,12 @@ def line(y, x, dir): # 코어라인 생성
 
 def dfs(level, total, cores):
     global min_line, max_cores, lst
-    if cores > max_cores or (cores == max_cores and min_line > total):
-        min_line = total
-        max_cores = cores
-        return
     if level == len(arr):
+        if cores > max_cores or (cores==max_cores and min_line > total):
+            min_line = total
+            max_cores = cores
         return
-    if total > min_line: return
+    if min_line < total: return
     y, x = arr[level]
     backup = deepcopy(lst)
     for i in range(4):
