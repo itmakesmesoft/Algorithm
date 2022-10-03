@@ -1,3 +1,6 @@
+import sys
+sys.stdin=open("SWEA/Brute_force/input.txt", "rt")
+
 from collections import deque
 
 t = int(input())
@@ -10,7 +13,6 @@ for case in range(1, t+1):
     q.append([0,0])
     while q:
         y, x = q.popleft()
-        if y == n-1 and x == n-1: break
         dy = [1,0,-1,0]
         dx = [0,1,0,-1]
         for i in range(4):
