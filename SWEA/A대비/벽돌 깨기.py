@@ -32,7 +32,7 @@ def bfs(y, x):
                 if lst[ny][nx]==0: continue
                 q.append([ny, nx])
     drop_bricks()
-    return 
+    return  
 
 
 def dfs(cnt):
