@@ -1,40 +1,66 @@
-def getresult(total, num, index):
-    if index==0:
-        print("+")
-        return total+num
-    elif index==1:
-        print("-")
-        return total-num
-    elif index==2:
-        print("*")
-        return total*num
-    else:
-        print("/")
-        return int(total/num)
-
 def dfs(level, total):
-    global max_tot, min_tot, lst
-    print(level, total)
+    global max_total, min_total
     if level==n:
-        if max_tot < total:
-            max_tot = total
-        if min_tot > total:
-            min_tot = total
+        if total > max_total:
+            max_total = total
+        if total < min_total:
+            min_total = total
         return
-        
     for i in range(4):
-        if lst[i] > 0:
-            lst[i] -= 1
-            tmp = total + getresult(total, number[level], i)
+        if canuse[i]>0:
+            canuse[i]-=1
+            tmp = total
+            if i==0:
+                tmp+=numbers[level]
+            elif i==1:
+                tmp-=numbers[level]
+            elif i==2:
+                tmp*=numbers[level]
+            else:
+                tmp=int(tmp/numbers[level])
             dfs(level+1, tmp)
-            lst[i] += 1
-
+            canuse[i]+=1
+    
 t = int(input())
 for case in range(1, t+1):
     n = int(input())
-    lst = list(map(int, input().split()))
-    number = list(map(int, input().split()))
-    min_tot = 21e8
-    max_tot = -21e8
-    dfs(1, number[0])
-    print(max_tot, min_tot)
+    canuse = list(map(int, input().split()))
+    numbers = list(map(int, input().split()))
+    max_total = -21e8
+    min_total = 21e8
+    dfs(1, numbers[0])
+    print(f'#{case} {max_total-min_total}')
+    
+'''
+10
+5
+2 1 0 1
+3 5 3 7 9
+6
+4 1 0 0
+1 2 3 4 5 6 
+5
+1 1 1 1
+9 9 9 9 9 
+6
+1 4 0 0
+1 2 3 4 5 6 
+4
+0 2 1 0
+1 9 8 6
+6
+2 1 1 1
+7 4 4 1 9 3 
+7
+1 4 1 0
+2 1 6 7 6 5 8 
+8
+1 1 3 2
+9 2 5 3 4 9 5 6 
+10
+1 1 5 2
+8 5 6 8 9 2 6 4 3 2 
+12
+2 1 6 2
+2 3 7 9 4 5 1 9 2 5 6 4 
+'''
