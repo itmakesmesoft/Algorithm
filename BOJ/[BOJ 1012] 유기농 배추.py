@@ -1,4 +1,6 @@
 from collections import deque
+import sys
+
 def bfs(y, x):
     global  visited
     q = deque()
@@ -16,7 +18,8 @@ def bfs(y, x):
             visited[ny][nx]=1
             q.append([ny, nx])
 
-
+input = sys.stdin.readline
+res = []
 t = int(input())
 for _ in range(t):
     m, n, k = map(int, input().split())
@@ -31,4 +34,7 @@ for _ in range(t):
             if arr[i][j]==1 and visited[i][j]==0:
                 bfs(i, j)
                 cnt += 1
-    print(cnt)
+    res.append(cnt)
+    
+for i in res:
+    print(i)

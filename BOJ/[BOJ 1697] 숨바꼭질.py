@@ -10,19 +10,10 @@ def bfs(N, K):
     while q:
         N, t = q.popleft()
         if N == K: return t
-        if N < 0: continue
-        if memo[N] > t: memo[N] = t
-        if N*2 < 100000 and memo[N*2] > t+1:
-            q.append([N*2, t+1])
-            cnt+=1
-        if N+1 < 100000 and memo[N+1] > t+1:
-            q.append([N+1, t+1])
-            cnt+=1
-        if N-1 < 100000 and memo[N-1] > t+1:
-            q.append([N-1, t+1])
-            cnt+=1
-INF = int(21e9)
-cnt = 0
-memo = [INF]*100001
+        for n in [N*2, N+1, N-1]:
+            if n < 0 or n > 100000: continue
+            if memo[n]==1: continue
+            memo[n]=1
+            q.append([n, t+1])
+memo = [0]*100001
 print(bfs(N, K))
-print(cnt)
