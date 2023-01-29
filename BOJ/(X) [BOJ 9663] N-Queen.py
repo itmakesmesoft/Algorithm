@@ -1,16 +1,10 @@
 import sys
 
 def check_queen(level, i):
-    direct = [-1, 0, 1]
-    for j in range(level):
-        for k in range(3):
-            nx = i+direct[k]*(level-j)
-            if nx>N-1 or nx<0: continue
-            if MAP[j][nx]==1: return False
-    return True
+    if level + i == 
 
 def dfs(level):
-    global count, visited, MAP
+    global count, MAP
     if level == N:
         count += 1
         return
