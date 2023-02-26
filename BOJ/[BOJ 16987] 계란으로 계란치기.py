@@ -7,6 +7,7 @@ def count_eggs():
   if count > max_cnt:
     max_cnt = count
 
+
 def dfs(level):
   global lst
   if level==N:
@@ -17,18 +18,22 @@ def dfs(level):
     dfs(level+1)
     return
 
+  flag = False
   for i in range(N):
     if i==level:
-      count_eggs()
+      # count_eggs()
       continue # 바로 이전과 같은 계란은 스킵하기
     if lst[i][0]<=0: continue # 이미 깨진 계란
+
+    flag = True
     # 내구도 백업
     tmp_a, tmp_b = lst[level][0], lst[i][0]
     # 다음 내구도 = 내구도-무게
     lst[level][0], lst[i][0] = lst[level][0]-lst[i][1], lst[i][0]-lst[level][1]
     dfs(level+1)
     lst[level][0], lst[i][0] = tmp_a, tmp_b # 되돌리기
-
+  if flag!=True:
+    dfs(level+1)
 
 import sys
 input = sys.stdin.readline
