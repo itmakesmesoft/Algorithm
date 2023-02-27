@@ -1,26 +1,35 @@
-def union(a, b):
-    fa, fb = find(a), find(b)
-    if fa==fb:
-        return True 
-    
-    return
+# Union find로 시도 -> 실패
 
-def find(a):
-    global lst
-    if lst[a]==a:
-        return a
-    lst[a]=find(lst[a])
-    return lst[a]
+import sys
+input = sys.stdin.readline
+
+def union(a, b):
+  global edge
+  fa, fb = find(a), find(b)
+  if fa == fb: return False #  이미 같은 그룹
+  if fb > fa:
+    edge[fb] = fa
+  else:
+    edge[fa] = fb
+  return True
+
+
+def find(node):
+  global edge
+  if edge[node] == node: return node
+  ret = find(edge[node])
+  edge[node] = ret
+  return ret
 
 N, M = map(int, input().split())
-lst = list(range(1, N+1))
+edge = list(range(N+1))
 cnt = 0
 for _ in range(M):
-    a, b = map(int,input().split())
-    if union(a, b):
-        cnt+=1
+  a, b = map(int, input().split())
+  if union(a, b):
+    cnt += 1
 
-
+print(N - cnt)
 
 
 
