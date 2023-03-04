@@ -3,7 +3,7 @@ for case in range(1, t+1):
     arr=[10,20,20]
     n = int(input())
     cntarr = [0]*3
-    def dfs(cntarr): 
+    def dfs(cntarr):
         global cnt
         total = 10*cntarr[0] + 20*(cntarr[1]+cntarr[2])
         if total >= n:
