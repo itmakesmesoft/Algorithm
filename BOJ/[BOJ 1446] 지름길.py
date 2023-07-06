@@ -10,7 +10,7 @@ def dijkstra(start):
 
         if res[node] < distance: continue
         for i in lst[node]:
-            
+
 
 
 n, d = map(int, input().split())
