@@ -12,8 +12,6 @@ while st<ed:
     if abs(s) < min_s:
         min_s = abs(s)
         min_lst = [lst[st], lst[ed]]
-    if s >= 0:
-        ed-=1
-    elif s < 0:
-        st+=1
+    if s >= 0: ed-=1
+    elif s < 0: st+=1
 print(*min_lst)
