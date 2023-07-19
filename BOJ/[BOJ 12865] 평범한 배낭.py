@@ -1,21 +1,15 @@
+# Knapsack 알고리즘
+
 N, K = map(int, input().split())
-lst = [list(map(int, input().split())) for _ in range(N)]
-
-def dfs(level, w, v):
-  global used, max_v
-  if w > K:
-    return
-  else:
-    if v > max_v:
-      max_v = v
-  for i in range(N):
-    if used[i]==1: continue
-    used[i]=1
-    dfs(level+1, w+lst[i][0], v+lst[i][1])
-    used[i]=0
-  return
-
-max_v = 0
-used = [0]*N
-dfs(0, 0, 0)
-print(max_v)
+things = [list(map(int, input().split())) for _ in range(N)]
+things.sort(key=lambda x:x[0])
+dp = [[0]*(K+1) for _ in range(N+1)]
+for i in range(1, N+1):
+    for j in range(1, K+1):
+        # 물건은 1개씩만 있음
+        w, v = things[i-1]
+        if j>=w: # 넣을 수 있는 경우
+            dp[i][j] = max(dp[i-1][j], dp[i-1][j-w]+v)
+        else: # 넣을 수 없는 경우
+            dp[i][j] = dp[i-1][j]
+print(dp[N][K])
