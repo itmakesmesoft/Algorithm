@@ -33,6 +33,8 @@ is_possible(0, 0, N)
 print(white) # 햐얀색 색종이 갯수
 print(blue) # 파란색 색종이 갯수
 
+
+# 이전 풀이
 # def divide(x, y, N):
 #     global p_type
 #     if N==1 or is_same(x, y, N):
