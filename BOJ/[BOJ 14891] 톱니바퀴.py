@@ -1,5 +1,4 @@
 def rotate(index, clockwise):
-    # print(f'{index}번 톱니바퀴, {clockwise}방향 호출됨됨')
     global gears, rotated
     if index>0 and gears[index-1][2] != gears[index][6] and rotated[index-1]==0:
         rotated[index-1] = 1
