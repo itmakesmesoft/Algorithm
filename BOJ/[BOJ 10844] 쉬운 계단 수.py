@@ -1,3 +1,5 @@
+# 구글링 참고
+
 N = int(input())
 dp = [[0]*10 for _ in range(N)]
 for i in range(1,10):
