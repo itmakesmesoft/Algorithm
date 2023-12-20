@@ -1,5 +1,6 @@
 import sys
 input = sys.stdin.readline
+# 80분 걸림
 
 # lst의 모든 조건을 만족시키는 지 확인
 def is_possible(value):
